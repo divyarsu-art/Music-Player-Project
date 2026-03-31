@@ -166,3 +166,75 @@ volumeRange.addEventListener("input", function () {
   volumePercent.textContent = volumeValue + "%";
 });
 
+let waveCanvas, waveCtx;
+let t = 0;
+
+function setupWaveCanvas() {
+  waveCanvas = document.getElementById("waveCanvas");
+  if (!waveCanvas) return;
+
+  waveCtx = waveCanvas.getContext("2d");
+
+  
+  waveCanvas.width = waveCanvas.offsetWidth;
+  waveCanvas.height = waveCanvas.offsetHeight;
+
+  drawWave();
+}
+
+function drawWave() {
+  if (!waveCtx) return;
+
+  let w = waveCanvas.width;
+  let h = waveCanvas.height;
+
+  waveCtx.clearRect(0, 0, w, h);
+
+  waveCtx.strokeStyle = "#ff4da6";
+  waveCtx.lineWidth = 2;
+
+  // ✨ Glow effect (optional but nice)
+  waveCtx.shadowBlur = 10;
+  waveCtx.shadowColor = "#ff4da6";
+
+  let amplitude = isPlaying ? 10 : 3;
+  let frequency = 0.05;
+
+  let padding = 20; // 🔥 THIS FIXES POSITION
+
+  // 🔝 TOP
+  waveCtx.beginPath();
+  for (let x = padding; x < w - padding; x++) {
+    let y = padding + Math.sin((x + t) * frequency) * amplitude;
+    waveCtx.lineTo(x, y);
+  }
+  waveCtx.stroke();
+
+  // 🔻 BOTTOM
+  waveCtx.beginPath();
+  for (let x = padding; x < w - padding; x++) {
+    let y = h - padding + Math.sin((x + t) * frequency) * amplitude;
+    waveCtx.lineTo(x, y);
+  }
+  waveCtx.stroke();
+
+  // ⬅️ LEFT
+  waveCtx.beginPath();
+  for (let y = padding; y < h - padding; y++) {
+    let x = padding + Math.sin((y + t) * frequency) * amplitude;
+    waveCtx.lineTo(x, y);
+  }
+  waveCtx.stroke();
+
+  // ➡️ RIGHT
+  waveCtx.beginPath();
+  for (let y = padding; y < h - padding; y++) {
+    let x = w - padding + Math.sin((y + t) * frequency) * amplitude;
+    waveCtx.lineTo(x, y);
+  }
+  waveCtx.stroke();
+
+  t += isPlaying ? 2 : 0.5;
+
+  requestAnimationFrame(drawWave);
+}
