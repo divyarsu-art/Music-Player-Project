@@ -1,0 +1,289 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Music Player UI</title>
+  <link rel="stylesheet" href="music_style.css" />
+</head>
+
+<body>
+
+  <!-- TOP BAR -->
+  <header class="topbar">
+
+  <h2>🎵 MyMusic | 24BCE5527 Divyashri R</h2>
+
+  <div class="topbar-right">
+    <button class="search-btn" onclick="showScreen('search')">
+      🔍 Search
+    </button>
+
+    <button id="themeToggle" class="theme-btn">
+      🌙
+    </button>
+  </div>
+
+</header>
+
+
+  <!-- MAIN LAYOUT -->
+  <div class="layout">
+    <nav class="sidebar">
+    <ul>
+      <li onclick="showScreen('home')">Home</li>
+      <li onclick="showScreen('playlists')">Playlists</li>
+
+      <li>Favourites</li>
+    </ul>
+  </nav>
+
+
+    <!-- PLAYLISTS SCREEN -->
+<section id="playlists" class="screen">
+
+  <button class="back-btn" onclick="showScreen('home')">
+    ⬅ Back
+  </button>
+
+  <h1 style="text-align:left; margin-top:40px;">Playlists</h1>
+
+  <div class="playlist-grid">
+
+    <div class="playlist-card gradient1">
+      <h3>Chill Vibes</h3>
+    </div>
+
+    <div class="playlist-card gradient2">
+      <h3>Workout Hits</h3>
+    </div>
+
+    <div class="playlist-card gradient3">
+      <h3>Late Night Drive</h3>
+    </div>
+
+    <div class="playlist-card gradient4">
+      <h3>Throwback 2000s</h3>
+    </div>
+
+    <div class="playlist-card gradient5">
+      <h3>Indie Essentials</h3>
+    </div>
+
+  </div>
+
+</section>
+    <!-- ALBUM SCREEN -->
+<section id="album" class="screen">
+
+  <button class="back-btn" onclick="showScreen('home')">
+    ⬅ Back
+  </button>
+
+  <div class="album-header">
+
+    <img src="vikram.jpg" class="album-cover-large" alt="Vikram Album">
+
+    <div class="album-info">
+      <h1>Vikram (Original Motion Picture Soundtrack)</h1>
+      <h3>Anirudh Ravichander</h3>
+      <p>Tamil • 2022 • 8 Songs</p>
+
+      <div class="album-buttons">
+        <button class="play-btn">▶ Play</button>
+        <button class="shuffle-btn">🔀 Shuffle</button>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- SONG LIST -->
+  <div class="album-song-list">
+
+    <div class="album-song"
+         onclick="openPlayer('Pathala Pathala','Anirudh Ravichander','#ff4da6','vikram.jpg')">
+      <span>1</span>
+      <div>
+        <strong>Pathala Pathala</strong>
+        <p>Anirudh Ravichander</p>
+      </div>
+      <span>3:31</span>
+    </div>
+
+    <div class="album-song"
+         onclick="openPlayer('Vikram Title Track','Anirudh Ravichander','#ff4da6','vikram.jpg')">
+      <span>2</span>
+      <div>
+        <strong>Vikram (Title Track)</strong>
+        <p>Anirudh Ravichander</p>
+      </div>
+      <span>3:39</span>
+    </div>
+
+    <div class="album-song"
+         onclick="openPlayer('Wasted','Anirudh Ravichander','#ff4da6','vikram.jpg')">
+      <span>3</span>
+      <div>
+        <strong>Wasted</strong>
+        <p>Anirudh Ravichander</p>
+      </div>
+      <span>3:03</span>
+    </div>
+
+  </div>
+
+</section>
+
+
+
+    <!-- HOME SCREEN -->
+    <section id="home" class="screen active-screen">
+
+      <h1 style="text-align:left;">Home</h1>
+      <h3 style="text-align:left; margin-top:30px;">Recently Played</h3>
+
+      <div class="home-cards">
+
+        <!-- LES CARD -->
+        <div class="music-card"
+             onclick="openPlayer('Les','Childish Gambino','#ff4da6','les.jpg')">
+
+          <img src="les.jpg" class="card-img" alt="Les Cover">
+          <p>Les</p>
+          <small>Childish Gambino</small>
+
+        </div>
+
+        <!-- SHAPE OF YOU CARD -->
+        <div class="music-card"
+             onclick="openPlayer('Shape of You','Ed Sheeran','#ff4da6','shape.jpg')">
+
+          <img src="shape.jpg" class="card-img" alt="Shape of You Cover">
+          <p>Shape of You</p>
+          <small>Ed Sheeran</small>
+
+        </div>
+        <div class="music-card"
+        onclick="showScreen('album')">
+
+        <img src="vikram.jpg" class="card-img" alt="Vikram Album">
+        <p>Vikram</p>
+        <small>Anirudh Ravichander</small>
+
+        </div>
+        <!-- BLINDING LIGHTS CARD -->
+        <div class="music-card"
+        onclick="openPlayer('Blinding Lights','The Weeknd','#ff4da6','blinding.jpg')">
+
+        <img src="blinding.jpg" class="card-img" alt="Blinding Lights Cover">
+        <p>Blinding Lights</p>
+        <small>The Weeknd</small>
+
+        </div>
+
+
+
+      </div>
+
+    </section>
+
+
+    <!-- PLAYER SCREEN -->
+    <section id="player" class="screen">
+
+      <button class="back-btn" onclick="goBack()">⬅ Back</button>
+
+
+      <!-- Album Image -->
+      <img src="shape.jpg" id="albumBox" class="album-box" alt="Album Cover">
+      
+      <!-- Song Info -->
+      <h4 id="playerTitle">Shape of You</h4>
+      <p id="playerArtist">Ed Sheeran</p>
+
+      <!-- Controls -->
+      <div class="controls">
+        <button>⏮</button>
+        <button id="playBtn">▶</button>
+        <button>⏭</button>
+      </div>
+
+      <!-- Progress -->
+      <div class="progress">
+        <div class="progress-bar" id="progressBar"></div>
+      </div>
+
+      <!-- Lyrics -->
+      <div class="lyrics-box">
+        <p><strong>LYRICS</strong></p><br>
+        The club isn't the best place to find a lover...<br>
+        So the bar is where I go...<br>
+        Me and my friends at the table doing shots...<br>
+        Drinking fast and then we talk slow...
+      </div>
+      
+
+    </section>
+
+
+    <!-- SEARCH SCREEN -->
+    <section id="search" class="screen">
+
+      <h3>Search Songs</h3>
+
+      <div class="search-box">
+        <input type="text" placeholder="Search songs..." />
+      </div>
+
+      <div class="song-list">
+        <a href="#home" class="song active-song">Shape of You 🎵 Ed Sheeran</a>
+        <a href="#home" class="song">Blinding Lights 🎵 The Weeknd</a>
+      </div>
+
+      <button class="back-btn" onclick="showScreen('home')">
+      ⬅ Back
+      </button>
+
+
+    </section>
+
+  </div>
+
+
+<div class="mini-player" id="miniPlayer"
+     onclick="openPlayer(currentTitle,currentArtist,currentColor,currentImage)">
+
+  <div class="mini-info">
+    <strong id="miniTitle">Les</strong>
+    <span id="miniArtist">Childish Gambino</span>
+  </div>
+
+  <div class="mini-right">
+
+    <!-- VOLUME ICON -->
+    <div class="volume-container" onclick="toggleVolume(event)">
+      🔊
+      <div class="volume-slider" id="volumeSlider">
+        <input type="range" id="volumeRange" min="0" max="100" value="80">
+        <span id="volumePercent">80%</span>
+      </div>
+    </div>
+    
+    <!--PLAY BUTTON-->
+    <div class="mini-controls">
+  <button id="miniPlayBtn">▶</button>
+</div>
+    <!--Progress bar-->
+<div class="mini-progress">
+  <div class="mini-progress-bar" id="miniProgressBar"></div>
+</div>
+
+
+  </div>
+
+</div>
+
+
+  <script src="script.js"></script>
+</body>
+</html>
