@@ -140,11 +140,11 @@ function showScreen(screenId) {
     li.classList.remove("active");
   });
 
-  // Find the matching sidebar item
+  
   const activeItem = Array.from(document.querySelectorAll(".sidebar li"))
     .find(li => li.textContent.trim().toLowerCase() === screenId);
 
-  // Add active class
+  
   if (activeItem) activeItem.classList.add("active");
 }
 
@@ -193,16 +193,15 @@ function drawWave() {
   waveCtx.strokeStyle = "#ff4da6";
   waveCtx.lineWidth = 2;
 
-  // ✨ Glow effect (optional but nice)
+  
   waveCtx.shadowBlur = 10;
   waveCtx.shadowColor = "#ff4da6";
 
   let amplitude = isPlaying ? 10 : 3;
   let frequency = 0.05;
 
-  let padding = 20; // 🔥 THIS FIXES POSITION
+  let padding = 20; 
 
-  // 🔝 TOP
   waveCtx.beginPath();
   for (let x = padding; x < w - padding; x++) {
     let y = padding + Math.sin((x + t) * frequency) * amplitude;
@@ -210,7 +209,7 @@ function drawWave() {
   }
   waveCtx.stroke();
 
-  // 🔻 BOTTOM
+  
   waveCtx.beginPath();
   for (let x = padding; x < w - padding; x++) {
     let y = h - padding + Math.sin((x + t) * frequency) * amplitude;
@@ -218,7 +217,7 @@ function drawWave() {
   }
   waveCtx.stroke();
 
-  // ⬅️ LEFT
+  
   waveCtx.beginPath();
   for (let y = padding; y < h - padding; y++) {
     let x = padding + Math.sin((y + t) * frequency) * amplitude;
@@ -226,7 +225,7 @@ function drawWave() {
   }
   waveCtx.stroke();
 
-  // ➡️ RIGHT
+  
   waveCtx.beginPath();
   for (let y = padding; y < h - padding; y++) {
     let x = w - padding + Math.sin((y + t) * frequency) * amplitude;
