@@ -62,7 +62,7 @@ const musicDatabase = {
 {
   title: "Delicate",
   artist: "Taylor Swift",
-  image: "taylor.jpg",
+  image: "Taylor.jpg",
   lyrics: "I'm delicate, I'm delicate\nI'm delicate, I'm delicate"
 }
   ],
